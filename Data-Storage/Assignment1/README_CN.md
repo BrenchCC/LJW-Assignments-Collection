@@ -31,5 +31,5 @@
 3. 展示质量。（5 分）
 
 **第二节解答：[Part2_Explanation.md](Part2_Explanation.md)**
-
+**第二节文件: [Part2_SQL](part2.sql)**
 
