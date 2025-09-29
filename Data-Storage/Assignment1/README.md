@@ -1,4 +1,5 @@
-# Assignment 1 - Data Storage
+# Assignment 1 - Data 
+[CN_VERSION](README_CN.md)
 ## Part 1: ER Modeling (50 Marks)
 - Submit a diagram drawn using a drawing program (any program you prefer is acceptable; you may also use ER drawing tools from http://en.wikipedia.org/wiki/Entity-relationship_model). Hand-drawn diagrams are not allowed.
 - If you are uncertain about some of your design choices, you may add explanations.
