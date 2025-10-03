@@ -2,16 +2,19 @@
 
 ## 1. 客户和账户基本信息（第1个需求，8分）
 ```mermaid
+erDiagram
+    %% Customer entity (supertype)
     Customer {
-    int cid PK "Primary key"  
-    varchar cname "Customer name"
-    varchar customer_type "Discriminator (Company/Individual)"
-}
+        int cid PK "Primary key"
+        varchar cname "Customer name"
+        varchar customer_type "Discriminator (Company/Individual)"
+    }
 
-Account {
-    int aid PK "Primary key"
-    float overdraft_limit "Overdraft limit amount"
-}
+    %% Account entity
+    Account {
+        int aid PK "Primary key"
+        float overdraft_limit "Overdraft limit amount"
+    }
 ```
 解释：
 - `Customer`实体存储客户信息，主键是`cid`（客户ID），包含`cname`（客户名称）属性
@@ -20,17 +23,20 @@ Account {
   
 ## 2. 客户类型继承关系（第2个需求，10分）
 ```mermaid
-Company {
-    int cid PK,FK "References Customer.cid"
-    varchar street "Street address"
-    varchar city "City"
-}
+erDiagram
+    %% Company customer subtype
+    Company {
+        int cid PK,FK "References Customer.cid"
+        varchar street "Street address"
+        varchar city "City"
+    }
 
-Individual {
-    int cid PK,FK "References Customer.cid"
-    varchar gender "Gender"
-    int age "Age"
-}
+    %% Individual customer subtype
+    Individual {
+        int cid PK,FK "References Customer.cid"
+        varchar gender "Gender"
+        int age "Age"
+    }
 
 Customer ||--|| Company : "is-a"
 Customer ||--|| Individual : "is-a"
@@ -43,12 +49,27 @@ Customer ||--|| Individual : "is-a"
 
 ## 3. 客户拥有账户关系（第3个需求，7分）
 ```mermaid
-Owns {
-    int cid PK,FK "References Customer.cid"
-    int aid PK,FK "References Account.aid"
-    date start_date "Account start date"
-    varchar pin "Access PIN number"
-}
+erDiagram
+    %% Customer entity (supertype)
+    Customer {
+        int cid PK "Primary key"
+        varchar cname "Customer name"
+        varchar customer_type "Discriminator (Company/Individual)"
+    }
+
+    %% Account entity
+    Account {
+        int aid PK "Primary key"
+        float overdraft_limit "Overdraft limit amount"
+    }
+
+    %% Ownership relationship with attributes
+    Owns {
+        int cid PK,FK "References Customer.cid"
+        int aid PK,FK "References Account.aid"
+        date start_date "Account start date"
+        varchar pin "Access PIN number"
+    }
 
 Customer ||--o{ Owns : "participates-in"
 Account ||--o{ Owns : "participates-in"
@@ -61,25 +82,29 @@ Account ||--o{ Owns : "participates-in"
 
 ## 4. 贷款相关实体（第4个需求，15分）
 ```mermaid
-Loan {
-    int loan_number PK "Primary key"
-    varchar loan_type "Type of loan"
-    float amount "Loan amount"
-    int branch_number FK "References Branch.branch_number"
-}
+erDiagram
+    %% Loan entity
+    Loan {
+        int loan_number PK "Primary key"
+        varchar loan_type "Type of loan"
+        float amount "Loan amount"
+        int branch_number FK "References Branch.branch_number"
+    }
 
-LoanPayment {
-    int loan_number PK,FK "References Loan.loan_number"
-    int payment_number PK "Payment sequence number"
-    date payment_date "Payment date"
-    float amount "Payment amount"
-}
+    %% LoanPayment entity
+    LoanPayment {
+        int loan_number PK,FK "References Loan.loan_number"
+        int payment_number PK "Payment sequence number"
+        date payment_date "Payment date"
+        float amount "Payment amount"
+    }
 
-Branch {
-    int branch_number PK "Primary key"
-    varchar city "Branch city"
-    varchar street "Branch street address"
-}
+    %% Branch entity
+    Branch {
+        int branch_number PK "Primary key"
+        varchar city "Branch city"
+        varchar street "Branch street address"
+    }
 
 Loan ||--o{ LoanPayment : "has"
 ```
@@ -96,10 +121,12 @@ Loan ||--o{ LoanPayment : "has"
 
 ## 5. 贷款业务关系（第5个需求，8分）
 ```mermaid
-Borrows {
-    int cid PK,FK "References Customer.cid"
-    int loan_number PK,FK "References Loan.loan_number"
-}
+erDiagram
+    %% Borrows entity
+    Borrows {
+        int cid PK,FK "References Customer.cid"
+        int loan_number PK,FK "References Loan.loan_number"
+    }
 
 Customer }o--o{ Borrows : "participates-in"
 Loan }o--o{ Borrows : "participates-in"
