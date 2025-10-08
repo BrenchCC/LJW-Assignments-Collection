@@ -7,7 +7,7 @@
 
 Then install the necessary packages:
 
-`pip install -r requirement.txt` 
+`pip install -r requirements.txt` 
 
 OR
 
