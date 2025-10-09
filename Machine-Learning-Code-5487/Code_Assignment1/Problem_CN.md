@@ -4,15 +4,15 @@
 
 
 在本次编程作业中，你需要实现并测试课堂及习题集中介绍的部分回归方法。设$ f(x, \theta) $为一个函数，其输入为$ x \in \mathbb{R}^{d} $，参数为$ \theta \in \mathbb{R}^{D} $，且满足：  
-$ f(x,\theta )=\phi (x)^{T}\theta \tag{1} $  
+$ f(x,\theta )=\phi (x)^{T}\theta $  
 其中$ \phi(x): \mathbb{R}^{d} \to \mathbb{R}^{D} $是输入$ x $的**特征变换**。例如，输入$ x \in \mathbb{R} $的$ K $次多项式可表示为：  
 $ f(x, \theta)=\sum_{k=0}^{K} x^{k} \theta_{k}=\phi(x)^{T} \theta $  
 其特征变换与参数分别为：  
-$ \phi(x)=\left[1, x, x^{2}, \cdots, x^{K}\right]^{T} \in \mathbb{R}^{K+1}, \theta=\left[\theta_{0}, \cdots, \theta_{K}\right]^{T} \in \mathbb{R}^{K+1} \tag{3} $  
+$ \phi(x)=\left[1, x, x^{2}, \cdots, x^{K}\right]^{T} \in \mathbb{R}^{K+1}, \theta=\left[\theta_{0}, \cdots, \theta_{K}\right]^{T} \in \mathbb{R}^{K+1} $  
 
 
 给定独立同分布（iid）样本$ D=\{(x_{1}, y_{1}), \dots, (x_{n}, y_{n})\} $（其中$ y_{i} $是$ f(x_{i}, \theta) $的带噪声观测值），我们的目标是得到函数$ f(x, \theta) $的最优估计。为方便后续计算，定义如下变量：  
-$ y=\left[y_{1}, \cdots, y_{n}\right]^{T}, \Phi=\left[\phi\left(x_{1}\right), \cdots, \phi\left(x_{n}\right)\right], X=\left[x_{1}, \cdots, x_{n}\right] \tag{4} $  
+$ y=\left[y_{1}, \cdots, y_{n}\right]^{T}, \Phi=\left[\phi\left(x_{1}\right), \cdots, \phi\left(x_{n}\right)\right], X=\left[x_{1}, \cdots, x_{n}\right]  $  
 
 
 以下是目前我们已学习的各类回归算法总结：
